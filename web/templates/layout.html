@@ -1,0 +1,26 @@
+<!doctype html>
+<title>{{title}}</title>
+<link rel=stylesheet type=text/css>
+<script>
+	function logout(){
+	xhr= new XMLHttpRequest()
+	xhr.open("POST","{{ url_for('accept_logout') }}",true)
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(JSON.stringify(params));
+	window.location="/"}
+</script>
+<div class=page>
+  <h1>{{title}}</h1>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{url_for('login')}}">log in</a>
+  {% else %}
+    <div> user</div>
+    <a href="javascript:logout()">log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

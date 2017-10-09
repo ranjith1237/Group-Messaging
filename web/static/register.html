@@ -1,0 +1,38 @@
+<head>
+	<h1>The Chat Room </h1>
+	<h2>Register </h2>
+	<script>
+		function register()
+		{
+			params={}
+			params.user=document.getElementById("register-user").value
+			params.pass=document.getElementById("register-pass").value
+			xhr= new XMLHttpRequest()
+			xhr.open("POST","accept/register",true)
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.send(JSON.stringify(params));
+		}
+		function loadLogin(){window.location="/login"}
+	</script>
+</head>
+<body>
+  <form class="modal-content animate">
+
+	<div>
+	<label><b>Username</b></label>
+	<input id="register-user" type="text" placeholder="Enter Username" name="uname" required>
+	</div>
+
+	<div>
+	<label><b>Password</b></label>
+	<input id="register-pass" type="password" placeholder="Enter Password" name="psw" required>
+	</div>
+
+	<button type="button" onclick=register()>Register</button>
+	<div> 
+		Already have an account?
+		<button type="button" onclick=loadLogin()>Login.</button>
+	</div>
+
+  </form>
+</body>
